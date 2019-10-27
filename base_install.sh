@@ -289,7 +289,7 @@ function select_locale() {
 
     local _locale_list=(`cat /etc/locale.gen | grep UTF-8 | sed 's/\..*$//' | sed '/@/d' | awk '{print $1}' | uniq | sed 's/#//g'`);
     PS3=${PROMPT_2}
-    echo -e "Select locale:\n"select _locale "${_locale_list[@]}" ; do
+    echo -e "Select locale:\n" select _locale '${_locale_list[@]}' ; do
         if contains_element ${_locale} "${_locale_list[@]}"; then
             LOCALE_UTF8="${_locale}.UTF-8"
             break
