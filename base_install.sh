@@ -288,8 +288,7 @@ function select_locale() {
     print_info "Locales are used in Linux to define which language the user uses. As the locales define the character sets being used as well, setting up the correct locale is especially important if the language contains non-ASCII characters."
 
     local _locale_list=(`cat /etc/locale.gen | grep UTF-8 | sed 's/\..*$//' | sed '/@/d' | awk '{print $1}' | uniq | sed 's/#//g'`);
-    PS3=${PROMPT_2}
-    echo -e "Select locale:\n" select _locale '${_locale_list[@]}' ; do
+    PS3=${PROMPT_2}echo -e "Select locale:\n" select _locale '${_locale_list[@]}' ; do
         if contains_element ${_locale} "${_locale_list[@]}"; then
             LOCALE_UTF8="${_locale}.UTF-8"
             break
